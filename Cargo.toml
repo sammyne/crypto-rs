@@ -1,13 +1,13 @@
 [package]
-name = "cryptography"
+name = "cryptographer"
 version = "0.1.0"
 authors = ["Sammy <lixiangmin01@baidu.com>"]
 edition = "2018"
 description = "A Go-like crypto library in Rust"
-documentation = "https://github.com/sammyne/cryptography.git"
-homepage = "https://github.com/sammyne/cryptography.git"
+documentation = "https://github.com/sammyne/cryptographer.git"
+homepage = "https://github.com/sammyne/cryptographer.git"
 license-file = "LICENSE"
-repository = "https://github.com/sammyne/cryptography.git"
+repository = "https://github.com/sammyne/cryptographer.git"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
