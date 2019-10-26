@@ -4,8 +4,8 @@ version = "0.1.0"
 authors = ["Sammy <lixiangmin01@baidu.com>"]
 edition = "2018"
 description = "A Go-like crypto library in Rust"
-documentation = "..."
-homepage = "..."
+documentation = "https://github.com/sammyne/cryptography.git"
+homepage = "https://github.com/sammyne/cryptography.git"
 license-file = "LICENSE"
 repository = "https://github.com/sammyne/cryptography.git"
 
