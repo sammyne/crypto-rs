@@ -3,6 +3,11 @@ name = "cryptography"
 version = "0.1.0"
 authors = ["Sammy <lixiangmin01@baidu.com>"]
 edition = "2018"
+description = "A Go-like crypto library in Rust"
+documentation = "..."
+homepage = "..."
+license-file = "LICENSE"
+repository = "https://github.com/sammyne/cryptography.git"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
