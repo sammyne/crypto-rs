@@ -50,9 +50,8 @@ pub fn sign(priv_key: &PrivateKey, msg: &[u8]) -> Result<Vec<u8>, Error> {
 pub fn verify(pub_key: &PublicKey, msg: &[u8], sig: &[u8]) -> Result<(), Error> {
     let msg = Message::parse_slice(msg).map_err(|err| Error::SigError(err))?;
 
-    let sig = Signature::parse_slice(&sig[..SIGNATURE_LEN])
-        .map_err(|err| Error::SigError(err))?;
-    
+    let sig = Signature::parse_slice(&sig[..SIGNATURE_LEN]).map_err(|err| Error::SigError(err))?;
+
     if !secp256k1::verify(&msg, &sig, pub_key) {
         return Err(Error::InvalidSigError);
     }
