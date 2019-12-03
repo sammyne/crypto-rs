@@ -1,1 +1,8 @@
 pub mod ed25519;
+pub mod secp256k1;
+
+pub trait PrivateKey {
+    type PublicKey;
+
+    fn public(&self) -> Self::PublicKey;
+}
