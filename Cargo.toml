@@ -12,3 +12,6 @@ repository = "https://github.com/sammyne/cryptographer.git"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[dependencies.ed25519-dalek]
+version = "1.0.0-pre.2"
