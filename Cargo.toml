@@ -13,6 +13,10 @@ repository = "https://github.com/sammyne/cryptographer.git"
 
 [dependencies]
 
+[dependencies.digest]
+rev = "digest-v0.8.1"
+git = "https://github.com/RustCrypto/traits.git"
+
 [dependencies.ed25519-dalek]
 version = "1.0.0-pre.2"
 
@@ -22,3 +26,12 @@ git = "https://github.com/paritytech/libsecp256k1.git"
 
 [dependencies.rand]
 version = "0.7.2"
+
+[dependencies.encoding]
+rev = "f28b0c5ff27ad0a0973359a410673280f1ef5d85"
+git = "https://github.com/sammyne/rust-encoding.git"
+
+[dependencies.sha2]
+rev = "sha2-v0.8.0"
+git = "https://github.com/RustCrypto/hashes.git"
+
