@@ -1,20 +1,26 @@
-use sha2::{Digest, Sha256};
+use sha2::{Digest, Sha224, Sha256};
+use std::io::{self, Write};
 
 pub use super::Hash;
 
 pub struct SHA256(Sha256);
+pub struct SHA224(Sha224);
 
-impl super::Hash for SHA256 {
+pub const BLOCK_SIZE: usize = 64;
+pub const SIZE: usize = 32;
+pub const SIZE224: usize = 28;
+
+impl super::Hash for SHA224 {
     fn new() -> Self {
-        SHA256(Sha256::default())
+        SHA224(Sha224::default())
     }
 
     fn size() -> usize {
-        Sha256::output_size()
+        Sha224::output_size()
     }
 
     fn block_size() -> usize {
-        64
+        BLOCK_SIZE
     }
 
     fn reset(&mut self) {
@@ -28,18 +34,71 @@ impl super::Hash for SHA256 {
 
         out
     }
+}
 
-    fn write(&mut self, buf: &[u8]) -> Result<usize, String> {
+impl Write for SHA224 {
+    fn flush(&mut self) -> io::Result<()> {
+        Ok(())
+    }
+
+    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
         self.0.input(buf);
 
         Ok(buf.len())
     }
 }
 
-pub fn sum256(b: &[u8]) -> [u8; 32] {
+impl super::Hash for SHA256 {
+    fn new() -> Self {
+        SHA256(Sha256::default())
+    }
+
+    fn size() -> usize {
+        Sha256::output_size()
+    }
+
+    fn block_size() -> usize {
+        BLOCK_SIZE
+    }
+
+    fn reset(&mut self) {
+        self.0.reset()
+    }
+
+    fn sum(&self) -> Vec<u8> {
+        let d = self.0.clone().result();
+        let mut out = Vec::with_capacity(d.as_slice().len());
+        out.extend_from_slice(d.as_slice());
+
+        out
+    }
+}
+
+impl Write for SHA256 {
+    fn flush(&mut self) -> io::Result<()> {
+        Ok(())
+    }
+
+    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
+        self.0.input(buf);
+
+        Ok(buf.len())
+    }
+}
+
+pub fn sum224(b: &[u8]) -> [u8; SIZE224] {
+    let d = Sha224::digest(b);
+
+    let mut out = [0u8; SIZE224];
+    (&mut out[..]).copy_from_slice(d.as_slice());
+
+    out
+}
+
+pub fn sum256(b: &[u8]) -> [u8; SIZE] {
     let d = Sha256::digest(b);
 
-    let mut out = [0u8; 32];
+    let mut out = [0u8; SIZE];
     (&mut out[..]).copy_from_slice(d.as_slice());
 
     out

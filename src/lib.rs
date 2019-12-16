@@ -1,5 +1,3 @@
-use std::io;
-
 mod hash;
 
 pub mod ed25519;
