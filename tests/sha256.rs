@@ -1,6 +1,6 @@
-use std::io::Write;
 use cryptographer::sha256::{self, Hash, SHA224, SHA256};
 use encoding::hex;
+use std::io::Write;
 
 #[test]
 fn sha256_sha224() {
