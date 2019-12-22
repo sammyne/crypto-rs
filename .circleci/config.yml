@@ -23,12 +23,13 @@ jobs:
           command: cargo generate-lockfile
       - restore_cache:
           keys:
-            - cargo-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
+            - v1-cargo-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
       - save_cache:
           paths: 
-            # $CARGO_HOME
-            - /usr/local/cargo
-          key: cargo-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
+            # $CARGO_HOME/{git,registry}
+            - /usr/local/cargo/git
+            - /usr/local/cargo/registry
+          key: v1-cargo-cache-{{ arch }}-{{ checksum "Cargo.lock" }}
       - run: 
           name: testing
           command: cargo test
