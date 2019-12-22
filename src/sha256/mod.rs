@@ -3,20 +3,22 @@ use std::io::{self, Write};
 
 pub use super::Hash;
 
-pub struct SHA256(Sha256);
-pub struct SHA224(Sha224);
+pub struct Engine<T: Clone + Digest>(T);
+
+pub type SHA224 = Engine<Sha224>;
+pub type SHA256 = Engine<Sha256>;
 
 pub const BLOCK_SIZE: usize = 64;
 pub const SIZE: usize = 32;
 pub const SIZE224: usize = 28;
 
-impl super::Hash for SHA224 {
+impl<T: Clone + Digest> Hash for Engine<T> {
     fn new() -> Self {
-        SHA224(Sha224::default())
+        Self(T::new())
     }
 
     fn size() -> usize {
-        Sha224::output_size()
+        T::output_size()
     }
 
     fn block_size() -> usize {
@@ -36,45 +38,7 @@ impl super::Hash for SHA224 {
     }
 }
 
-impl Write for SHA224 {
-    fn flush(&mut self) -> io::Result<()> {
-        Ok(())
-    }
-
-    fn write(&mut self, buf: &[u8]) -> io::Result<usize> {
-        self.0.input(buf);
-
-        Ok(buf.len())
-    }
-}
-
-impl super::Hash for SHA256 {
-    fn new() -> Self {
-        SHA256(Sha256::default())
-    }
-
-    fn size() -> usize {
-        Sha256::output_size()
-    }
-
-    fn block_size() -> usize {
-        BLOCK_SIZE
-    }
-
-    fn reset(&mut self) {
-        self.0.reset()
-    }
-
-    fn sum(&self) -> Vec<u8> {
-        let d = self.0.clone().result();
-        let mut out = Vec::with_capacity(d.as_slice().len());
-        out.extend_from_slice(d.as_slice());
-
-        out
-    }
-}
-
-impl Write for SHA256 {
+impl<T: Clone + Digest> Write for Engine<T> {
     fn flush(&mut self) -> io::Result<()> {
         Ok(())
     }

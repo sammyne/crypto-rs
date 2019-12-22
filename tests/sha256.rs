@@ -3,7 +3,7 @@ use encoding::hex;
 use std::io::Write;
 
 #[test]
-fn sha256_sha224() {
+fn sha224() {
     let mut h = SHA224::new();
 
     let hello = "hello".as_bytes();
@@ -20,7 +20,7 @@ fn sha256_sha224() {
 }
 
 #[test]
-fn sha256_sha256() {
+fn sha256() {
     let mut h = SHA256::new();
 
     let hello = "hello".as_bytes();
