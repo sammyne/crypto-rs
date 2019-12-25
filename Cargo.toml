@@ -12,6 +12,7 @@ repository = "https://github.com/sammyne/cryptographer.git"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+aes = "0.3.2"
 
 [dependencies.digest]
 rev = "digest-v0.8.1"
