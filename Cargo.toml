@@ -1,7 +1,7 @@
 [package]
 name = "cryptographer"
 version = "0.1.1"
-authors = ["Sammy <lixiangmin01@baidu.com>"]
+authors = ["sammyne <lixiangmin01@baidu.com>"]
 edition = "2018"
 description = "A Go-like crypto library in Rust"
 documentation = "https://docs.rs/cryptographer"
@@ -30,7 +30,11 @@ version = "0.7.2"
 
 [dependencies.encoding]
 rev = "f28b0c5ff27ad0a0973359a410673280f1ef5d85"
-git = "https://github.com/sammyne/rust-encoding.git"
+git = "https://github.com/sammyne/encoding-rs.git"
+
+[dependencies.ripemd160]
+rev = "ripemd160-v0.8.0"
+git = "https://github.com/RustCrypto/hashes.git"
 
 [dependencies.sha2]
 rev = "sha2-v0.8.0"
