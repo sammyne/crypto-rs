@@ -21,6 +21,10 @@ git = "https://github.com/RustCrypto/traits.git"
 [dependencies.ed25519-dalek]
 version = "1.0.0-pre.2"
 
+[dependencies.encoding]
+rev = "f28b0c5ff27ad0a0973359a410673280f1ef5d85"
+git = "https://github.com/sammyne/encoding-rs.git"
+
 [dependencies.libsecp256k1]
 rev = "0628d1ed8979e08e265169bf32754f860d762ee8"
 git = "https://github.com/paritytech/libsecp256k1.git"
@@ -28,9 +32,9 @@ git = "https://github.com/paritytech/libsecp256k1.git"
 [dependencies.rand]
 version = "0.7.2"
 
-[dependencies.encoding]
-rev = "f28b0c5ff27ad0a0973359a410673280f1ef5d85"
-git = "https://github.com/sammyne/encoding-rs.git"
+[dependencies.md-5]
+rev = "md5-v0.8.0"
+git = "https://github.com/RustCrypto/hashes.git"
 
 [dependencies.ripemd160]
 rev = "ripemd160-v0.8.0"

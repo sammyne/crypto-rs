@@ -6,4 +6,5 @@ This repository tries to implement a Go-like crypto library in Rust.
 
 ## Algorithms
 - [x] AES
-- [x] ripemd160
+- [x] MD5
+- [x] RIPEMD160

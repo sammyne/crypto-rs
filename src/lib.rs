@@ -3,6 +3,7 @@ mod hash;
 pub mod aes;
 pub mod cipher;
 pub mod ed25519;
+pub mod md5;
 pub mod rand;
 pub mod ripemd160;
 pub mod secp256k1;
