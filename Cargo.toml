@@ -14,6 +14,7 @@ repository = "https://github.com/sammyne/cryptographer.git"
 
 [dependencies]
 aes = "0.3.2"
+rand = "0.7.2"
 
 [dependencies.digest]
 tag = "digest-v0.8.1"
@@ -29,9 +30,6 @@ git = "https://github.com/sammyne/encoding-rs.git"
 [dependencies.libsecp256k1]
 rev = "0628d1ed8979e08e265169bf32754f860d762ee8"
 git = "https://github.com/paritytech/libsecp256k1.git"
-
-[dependencies.rand]
-version = "0.7.2"
 
 [dependencies.md-5]
 tag = "md5-v0.8.0"
