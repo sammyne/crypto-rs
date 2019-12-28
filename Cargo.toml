@@ -6,7 +6,8 @@ edition = "2018"
 description = "A Go-like crypto library in Rust"
 documentation = "https://docs.rs/cryptographer"
 homepage = "https://crates.io/crates/cryptographer"
-license = "ISC"
+keywords = ["encryption", "digital signature", "cryptography"]
+license-file = "LICENSE"
 repository = "https://github.com/sammyne/cryptographer.git"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -15,7 +16,7 @@ repository = "https://github.com/sammyne/cryptographer.git"
 aes = "0.3.2"
 
 [dependencies.digest]
-rev = "digest-v0.8.1"
+tag = "digest-v0.8.1"
 git = "https://github.com/RustCrypto/traits.git"
 
 [dependencies.ed25519-dalek]
@@ -33,14 +34,14 @@ git = "https://github.com/paritytech/libsecp256k1.git"
 version = "0.7.2"
 
 [dependencies.md-5]
-rev = "md5-v0.8.0"
+tag = "md5-v0.8.0"
 git = "https://github.com/RustCrypto/hashes.git"
 
 [dependencies.ripemd160]
-rev = "ripemd160-v0.8.0"
+tag = "ripemd160-v0.8.0"
 git = "https://github.com/RustCrypto/hashes.git"
 
 [dependencies.sha2]
-rev = "sha2-v0.8.0"
+tag = "sha2-v0.8.0"
 git = "https://github.com/RustCrypto/hashes.git"
 
