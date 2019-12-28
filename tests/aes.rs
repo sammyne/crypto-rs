@@ -10,7 +10,7 @@ fn aes128() {
     let plaintext = "hello world to u".as_bytes();
     let mut ciphertext = [0u8; 16];
 
-    let c = aes::new(&key).expect("failed to new cipher");
+    let c = aes::new_cipher(&key).expect("failed to new cipher");
 
     // encrypt and compare
     c.encrypt(&mut ciphertext, &plaintext);
@@ -36,7 +36,7 @@ fn aes192() {
     let plaintext = "hello world to u".as_bytes();
     let mut ciphertext = [0u8; BLOCK_LEN];
 
-    let c = aes::new(&key).expect("failed to new cipher");
+    let c = aes::new_cipher(&key).expect("failed to new cipher");
 
     // encrypt and compare
     c.encrypt(&mut ciphertext, &plaintext);
@@ -62,7 +62,7 @@ fn aes256() {
     let plaintext = "hello world to u".as_bytes();
     let mut ciphertext = [0u8; BLOCK_LEN];
 
-    let c = aes::new(&key).expect("failed to new cipher");
+    let c = aes::new_cipher(&key).expect("failed to new cipher");
 
     // encrypt and compare
     c.encrypt(&mut ciphertext, &plaintext);

@@ -4,6 +4,12 @@
 
 This repository tries to implement a Go-like crypto library in Rust.
 
+## Run
+### Documentation locally
+```bash
+cargo doc --open
+```
+
 ## Algorithms
 - [x] AES
 - [x] MD5
