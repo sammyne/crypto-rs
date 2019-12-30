@@ -14,8 +14,9 @@ cargo doc --open
 
 > The added time of every new algorithm should be recorded in the table below.
 
-| Algorithm | AddedAt(YY/MM/DD) |
-| --------: | :---------------- |
-|       AES | 19/12/25          |
-|       MD5 | 19/12/26          |
-| RIPEMD160 | 19/12/26          |
+|  Algorithm | AddedAt(YY/MM/DD) |
+| ---------: | :---------------- |
+|        AES | 19/12/25          |
+| Curve25519 | 19/12/30          |
+|        MD5 | 19/12/26          |
+|  RIPEMD160 | 19/12/26          |

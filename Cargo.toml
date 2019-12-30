@@ -15,6 +15,7 @@ repository = "https://github.com/sammyne/cryptographer.git"
 [dependencies]
 aes = "0.3.2"
 rand = "0.7.2"
+x25519-dalek = "0.6.0"
 
 [dependencies.digest]
 tag = "digest-v0.8.1"
