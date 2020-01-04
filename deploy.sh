@@ -18,7 +18,7 @@ git add -A
 git commit -m 'deploy doc [skip ci]'
 
 # if you are deploying to https://<USERNAME>.github.io
-git push -f git@github.com:sammyne/cryptographer.git doc
+git push -f git@github.com:sammyne/cryptographer.git HEAD:doc
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
