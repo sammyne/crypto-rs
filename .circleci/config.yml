@@ -12,7 +12,7 @@ jobs:
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
     environment:
-      - GH_USER: nu00
+      - GH_USER: sammyne-bot
       - GH_EMAIL: xiangminli00@qq.com
     steps:
       - add_ssh_keys:
