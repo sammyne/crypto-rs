@@ -22,7 +22,7 @@ git commit -m 'deploy doc [skip ci]'
 
 # release document to the doc branch
 # if you are deploying to https://<USERNAME>.github.io
-git push -f git@github.com:sammyne/cryptographer.git HEAD:doc
+git push -f git@github.com:sammyne/cryptographer.git HEAD:gh-pages
 
 # if you are deploying to https://<USERNAME>.github.io/<REPO>
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
