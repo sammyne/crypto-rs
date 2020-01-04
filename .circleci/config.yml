@@ -1,6 +1,6 @@
 # Rust CircleCI 2.0 configuration file
 #
-version: 2
+version: 2.1
 jobs:
   build:
     docker:
@@ -11,9 +11,14 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
+    environment:
+      - GH_USER: nu00
+      - GH_EMAIL: xiangminli00@qq.com
     steps:
+      - add_ssh_keys:
+          fingerprints:
+            - ad:b4:fb:45:f5:58:42:47:dc:79:f7:e1:f7:a8:2c:33
       - checkout
-
       # specify any bash command here prefixed with `run: `
       - run: 
           name: version information
@@ -33,6 +38,12 @@ jobs:
       - run: 
           name: testing
           command: cargo test
+      - run: 
+          name: set up git credential and deploy doc
+          command: | 
+            git config --global user.email ${GH_EMAIL}
+            git config --global user.name ${GH_USER}
+            sh deploy.sh
       #- run:
       #    name: code coverage
       #    command: | 
@@ -50,3 +61,12 @@ jobs:
       #      for file in target/debug/cryptographer-*; do [ -x "${file}" ] || continue; mkdir -p "target/cov/$(basename $file)"; ./kcov-build/usr/local/bin/kcov --exclude-pattern=/.cargo,/usr/lib --verify "target/cov/$(basename $file)" "$file"; done &&
       #      bash <(curl -s https://codecov.io/bash) -t 09243557-91a0-438d-be2c-7f25219b543c &&
       #      echo "Uploaded code coverage" 
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              only: master
