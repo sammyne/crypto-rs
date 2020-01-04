@@ -14,11 +14,26 @@ pub enum Error {
     InvalidSigError,
 }
 
-impl super::PrivateKey for PrivateKey {
+/// @TODO: implement super::Signer
+//impl super::PrivateKey for PrivateKey {
+//    type PublicKey = PublicKey;
+//
+//    fn public(&self) -> PublicKey {
+//        PublicKey::from_secret_key(&self)
+//    }
+//}
+impl super::Signer for PrivateKey {
     type PublicKey = PublicKey;
 
-    fn public(&self) -> PublicKey {
+    fn public(&self) -> Self::PublicKey {
         PublicKey::from_secret_key(&self)
+    }
+
+    fn sign<T>(&self, _rand: &mut T, digest: &[u8]) -> Result<Vec<u8>, String>
+    where
+        T: Read,
+    {
+        sign(self, digest).map_err(|err| format!("{:?}", err))
     }
 }
 

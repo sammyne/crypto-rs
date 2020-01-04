@@ -1,5 +1,5 @@
 use cryptographer::rand::Rand;
-use cryptographer::{secp256k1, PrivateKey};
+use cryptographer::{secp256k1, Signer};
 
 #[test]
 fn sign_verify() {
@@ -12,5 +12,6 @@ fn sign_verify() {
     let sig = secp256k1::sign(&priv_key, &msg[..]).unwrap();
 
     let pub_key = priv_key.public();
+    //let pub_key: PublicKey = priv_key.public();
     secp256k1::verify(&pub_key, &msg[..], &sig).unwrap();
 }
