@@ -25,7 +25,7 @@ where
 {
     fn new() -> Self {
         let key = Vec::new();
-        Self::new_with_key(key.as_slice())
+        new(key.as_slice())
     }
 
     fn size() -> usize {
@@ -65,44 +65,42 @@ where
     }
 }
 
-impl<H> HMAC<H>
+/// new returns a new HMAC hash using the given Hash type as generic parameter H and
+/// key.
+pub fn new<H>(key: &[u8]) -> HMAC<H>
 where
     H: Hash,
 {
-    /// new_with_key returns a new HMAC hash using the given Hash type as generic parameter H and
-    /// key.
-    pub fn new_with_key(key: &[u8]) -> Self {
-        let mut outer = H::new();
-        let mut inner = H::new();
+    let mut outer = H::new();
+    let mut inner = H::new();
 
-        let key = if key.len() > H::block_size() {
-            let _ = outer.write(key);
-            outer.sum()
-        } else {
-            let mut k = key.to_vec();
-            k.resize(H::block_size(), 0);
+    let key = if key.len() > H::block_size() {
+        let _ = outer.write(key);
+        outer.sum()
+    } else {
+        let mut k = key.to_vec();
+        k.resize(H::block_size(), 0);
 
-            k
-        };
+        k
+    };
 
-        let mut ipad = key.clone();
-        let mut opad = key.clone();
+    let mut ipad = key.clone();
+    let mut opad = key.clone();
 
-        for v in &mut ipad {
-            *v ^= 0x36;
-        }
-        for v in &mut opad {
-            *v ^= 0x5c;
-        }
+    for v in &mut ipad {
+        *v ^= 0x36;
+    }
+    for v in &mut opad {
+        *v ^= 0x5c;
+    }
 
-        let _ = inner.write(ipad.as_slice());
+    let _ = inner.write(ipad.as_slice());
 
-        Self {
-            inner,
-            ipad,
-            opad,
-            outer,
-        }
+    HMAC {
+        inner,
+        ipad,
+        opad,
+        outer,
     }
 }
 
@@ -112,7 +110,7 @@ pub fn sum<H>(key: &[u8], data: &[u8]) -> Vec<u8>
 where
     H: Hash,
 {
-    let mut h = HMAC::<H>::new_with_key(key);
+    let mut h = new::<H>(key);
 
     let _ = h.write(data);
     h.sum()

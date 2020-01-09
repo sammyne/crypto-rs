@@ -1,4 +1,4 @@
-use cryptographer::hmac::{self, Hash, HMAC};
+use cryptographer::hmac::{self, Hash};
 use cryptographer::sha256::SHA256;
 use encoding::hex;
 use std::io::Write;
@@ -6,7 +6,7 @@ use std::io::Write;
 #[test]
 fn hmac_sha256() {
     let key = "hello".as_bytes();
-    let mut h = HMAC::<SHA256>::new_with_key(&key);
+    let mut h = hmac::new::<SHA256>(&key);
 
     let world = "world".as_bytes();
     h.write(&world).expect("failed to consume 'world'");
