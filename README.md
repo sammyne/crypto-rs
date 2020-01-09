@@ -14,5 +14,6 @@ This repository tries to implement a Go-like crypto library in Rust.
 |        AES | 19/12/25          |
 | Curve25519 | 19/12/30          |
 |    ED25519 | 20/01/04          |
+|       HMAC | 20/01/09          |
 |        MD5 | 19/12/26          |
 |  RIPEMD160 | 19/12/26          |

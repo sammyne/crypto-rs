@@ -29,7 +29,7 @@ impl<T: Clone + Digest> Hash for Engine<T> {
         self.0.reset()
     }
 
-    fn sum(&self) -> Vec<u8> {
+    fn sum(&mut self) -> Vec<u8> {
         let d = self.0.clone().result();
         let mut out = Vec::with_capacity(d.as_slice().len());
         out.extend_from_slice(d.as_slice());

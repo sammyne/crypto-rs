@@ -18,5 +18,5 @@ pub trait Hash: Write {
     /// reset resets the Hash to its initial state
     fn reset(&mut self);
     /// sum returns the resulting slice. It does not change the underlying hash state.
-    fn sum(&self) -> Vec<u8>;
+    fn sum(&mut self) -> Vec<u8>;
 }
