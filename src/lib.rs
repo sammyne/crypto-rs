@@ -1,5 +1,7 @@
 use std::io::Read;
 
+mod internal;
+
 mod hash;
 
 pub mod aes;
