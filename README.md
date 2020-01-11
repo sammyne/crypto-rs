@@ -1,7 +1,7 @@
 # Cryptographer
 
 [![CircleCI](https://circleci.com/gh/sammyne/cryptographer/tree/dev.svg?style=svg)](https://circleci.com/gh/sammyne/cryptographer/tree/dev)
-[![docs badge](https://img.shields.io/badge/docs-0.3.0-blue)](https://sammyne.github.io/cryptographer/cryptographer/)
+[![docs badge](https://img.shields.io/badge/docs-0.4.0-blue)](https://sammyne.github.io/cryptographer/cryptographer/)
 
 This repository tries to implement a Go-like crypto library in Rust.
 
@@ -19,3 +19,6 @@ This repository tries to implement a Go-like crypto library in Rust.
 |        RC4 | 20/01/11          |
 |  RIPEMD160 | 19/12/26          |
 |     subtle | 20/01/11          |
+
+## Examples 
+Just check the corresponding tests of the same names under the tests folder~
