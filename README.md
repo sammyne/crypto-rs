@@ -16,4 +16,5 @@ This repository tries to implement a Go-like crypto library in Rust.
 |    ED25519 | 20/01/04          |
 |       HMAC | 20/01/09          |
 |        MD5 | 19/12/26          |
+|        RC4 | 20/01/11          |
 |  RIPEMD160 | 19/12/26          |
