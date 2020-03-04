@@ -17,6 +17,7 @@ pub mod secp256k1;
 pub mod sha256;
 pub mod sha512;
 pub mod subtle;
+pub mod x;
 
 pub use hash::*;
 
