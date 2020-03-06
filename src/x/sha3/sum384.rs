@@ -1,4 +1,4 @@
-use sha3::{Digest, Sha3_384};
+use vendored_sha3::{Digest, Sha3_384};
 
 use super::Hash;
 

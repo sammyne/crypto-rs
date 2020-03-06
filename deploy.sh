@@ -7,7 +7,7 @@ set -e
 git push -f git@github.com:sammyne/cryptographer.git HEAD:master
 
 # build
-cargo doc --no-deps
+cargo doc --no-deps --all-features
 
 # navigate into the build output directory
 cd target/doc

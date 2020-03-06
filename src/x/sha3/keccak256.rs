@@ -1,8 +1,8 @@
-use sha3::Digest;
+use vendored_sha3::Digest;
 
 use super::{Hash, BLOCK_SIZE256, SIZE256};
 
-pub use sha3::Keccak256;
+pub use vendored_sha3::Keccak256;
 
 impl Hash for Keccak256 {
     fn new() -> Self {

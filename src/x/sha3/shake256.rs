@@ -1,7 +1,7 @@
 use std::io::{self, Read, Write};
 
-use sha3::digest::{ExtendableOutput, Input};
-use sha3::{Sha3XofReader, Shake256};
+use vendored_sha3::digest::{ExtendableOutput, Input};
+use vendored_sha3::{Sha3XofReader, Shake256};
 
 #[derive(Clone)]
 enum State {
