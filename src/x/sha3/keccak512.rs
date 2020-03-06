@@ -2,6 +2,7 @@ use vendored_sha3::Digest;
 
 use super::{Hash, BLOCK_SIZE512, SIZE512};
 
+/// Keccak512 is re-exported and implements Hash.
 pub use vendored_sha3::Keccak512;
 
 impl Hash for Keccak512 {
@@ -30,10 +31,15 @@ impl Hash for Keccak512 {
     }
 }
 
+/// new_legacy_keccak512 creates a new Keccak-512 hash.
+///
+/// Only use this function if you require compatibility with an existing cryptosystem that uses
+/// non-standard padding. All other users should use new512 instead.
 pub fn new_legacy_keccak512() -> Keccak512 {
     Hash::new()
 }
 
+/// keccak512 returns the Keccak-512 digest of the data.
 pub fn keccak512(b: &[u8]) -> [u8; SIZE512] {
     let d = Keccak512::digest(b);
 

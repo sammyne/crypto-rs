@@ -9,6 +9,7 @@ enum State {
     Reading(Sha3XofReader),
 }
 
+/// SHAKE128 is the 128-bit SHAKE variable-output-length hash functions defined by FIPS-202
 #[derive(Clone)]
 pub struct SHAKE128 {
     state: State,
@@ -49,12 +50,15 @@ impl super::ShakeHash for SHAKE128 {
     }
 }
 
+/// new_shake128 creates a new SHAKE128 variable-output-length ShakeHash. Its generic security
+/// strength is 128 bits against all attacks if at least 32 bytes of its output are used.
 pub fn new_shake128() -> SHAKE128 {
     SHAKE128 {
         state: State::Absorbing(Shake128::default()),
     }
 }
 
+/// shake_sum128 writes an arbitrary-length digest of data into hash.
 pub fn shake_sum128(hash: &mut [u8], b: &[u8]) -> io::Result<usize> {
     let mut h = new_shake128();
 

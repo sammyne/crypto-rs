@@ -9,6 +9,7 @@ enum State {
     Reading(Sha3XofReader),
 }
 
+/// SHAKE256 is the 256-bit SHAKE variable-output-length hash functions defined by FIPS-202
 #[derive(Clone)]
 pub struct SHAKE256 {
     state: State,
@@ -49,12 +50,15 @@ impl super::ShakeHash for SHAKE256 {
     }
 }
 
+/// new_shake256 creates a new SHAKE256 variable-output-length ShakeHash. Its generic security
+/// strength is 256 bits against all attacks if at least 64 bytes of its output are used.
 pub fn new_shake256() -> SHAKE256 {
     SHAKE256 {
         state: State::Absorbing(Shake256::default()),
     }
 }
 
+/// shake_sum256 writes an arbitrary-length digest of data into hash.
 pub fn shake_sum256(hash: &mut [u8], b: &[u8]) -> io::Result<usize> {
     let mut h = new_shake256();
 

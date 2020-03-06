@@ -1,13 +1,14 @@
 use vendored_sha3::{Digest, Sha3_512};
 
-use super::Hash;
-
+/// SHA3_512 alias Sha3_512 and implements Hash.
 pub type SHA3_512 = Sha3_512;
 
+/// The blocksize of SHA3-512 and Keccak-512 in bytes.
 pub const BLOCK_SIZE512: usize = 72;
+/// The size of a SHA3-512 and Keccak-512 checksum in bytes.
 pub const SIZE512: usize = 64;
 
-impl Hash for SHA3_512 {
+impl super::Hash for SHA3_512 {
     fn new() -> Self {
         Digest::new()
     }
@@ -33,10 +34,13 @@ impl Hash for SHA3_512 {
     }
 }
 
+/// new512 creates a new SHA3-512 hash. Its generic security strength is 512 bits against preimage
+/// attacks, and 256 bits against collision attacks.
 pub fn new512() -> SHA3_512 {
-    Hash::new()
+    super::Hash::new()
 }
 
+/// sum512 returns the SHA3-512 digest of the data.
 pub fn sum512(b: &[u8]) -> [u8; SIZE512] {
     let d = Sha3_512::digest(b);
 
