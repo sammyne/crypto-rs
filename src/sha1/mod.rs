@@ -1,11 +1,17 @@
+//! module sha1 implements the SHA-1 hash algorithm as defined in [RFC 3174][1].
+//!
+//! SHA-1 is cryptographically broken and should not be used for secure applications.
+//!
+//! [1]: https://datatracker.ietf.org/doc/rfc3174/
+
 use sha1::{Digest, Sha1};
 
 /// SHA1 alias Sha3_256 and implements crate::Hash.
 pub type SHA1 = Sha1;
 
-/// The blocksize of SHA1 and Keccak-256 in bytes.
+/// The blocksize of SHA-1 in bytes.
 pub const BLOCK_SIZE: usize = 64;
-/// The size of a SHA1 and Keccak-256 checksum in bytes.
+/// The size of a SHA-1 checksum in bytes.
 pub const SIZE: usize = 20;
 
 impl crate::Hash for SHA1 {
@@ -30,13 +36,12 @@ impl crate::Hash for SHA1 {
     }
 }
 
-/// new256 creates a new SHA1 hash. Its generic security strength is 256 bits against preimage
-/// attacks, and 128 bits against collision attacks.
+/// new returns a new hash.Hash computing the SHA-1 checksum.
 pub fn new() -> SHA1 {
     crate::Hash::new()
 }
 
-/// sum returns the SHA1 digest of the data.
+/// sum returns the SHA-1 checksum of the data.
 pub fn sum(b: &[u8]) -> [u8; SIZE] {
     let d = SHA1::digest(b);
 
