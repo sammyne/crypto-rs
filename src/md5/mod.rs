@@ -17,11 +17,6 @@ pub const BLOCK_SIZE: usize = 64;
 pub const SIZE: usize = 16;
 
 impl Hash for MD5 {
-    /// New returns a new hash.Hash computing the MD5 checksum.
-    fn new() -> Self {
-        Self(Md5::new())
-    }
-
     fn size() -> usize {
         Md5::output_size()
     }
@@ -53,6 +48,11 @@ impl Write for MD5 {
 
         Ok(buf.len())
     }
+}
+
+/// new returns a new hash.Hash computing the MD5 checksum.
+pub fn new() -> MD5 {
+    MD5(Md5::new())
 }
 
 /// sum returns the MD5 checksum of the data.

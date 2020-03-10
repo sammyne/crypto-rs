@@ -13,10 +13,6 @@ pub const SIZE: usize = 32;
 pub const SIZE224: usize = 28;
 
 impl<T: Clone + Digest> Hash for Engine<T> {
-    fn new() -> Self {
-        Self(T::new())
-    }
-
     fn size() -> usize {
         T::output_size()
     }
@@ -48,6 +44,14 @@ impl<T: Clone + Digest> Write for Engine<T> {
 
         Ok(buf.len())
     }
+}
+
+pub fn new() -> SHA256 {
+    Engine(Sha256::new())
+}
+
+pub fn new224() -> SHA224 {
+    Engine(Sha224::new())
 }
 
 pub fn sum224(b: &[u8]) -> [u8; SIZE224] {

@@ -6,10 +6,6 @@ use super::{Hash, BLOCK_SIZE256, SIZE256};
 pub use vendored_sha3::Keccak256;
 
 impl Hash for Keccak256 {
-    fn new() -> Self {
-        Digest::new()
-    }
-
     fn size() -> usize {
         Keccak256::output_size()
     }
@@ -36,7 +32,7 @@ impl Hash for Keccak256 {
 /// Only use this function if you require compatibility with an existing cryptosystem that uses ///
 /// non-standard padding. All other users should use new256 instead.
 pub fn new_legacy_keccak256() -> Keccak256 {
-    Hash::new()
+    Digest::new()
 }
 
 /// keccak256 returns the Keccak-256 digest of the data.

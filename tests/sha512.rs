@@ -2,11 +2,11 @@ use std::io::Write;
 
 use encoding::hex;
 
-use cryptographer::sha512::{self, Hash, SHA384, SHA512, SHA512_224, SHA512_256};
+use cryptographer::sha512::{self, Hash};
 
 #[test]
 fn sha384() {
-    let mut h = SHA384::new();
+    let mut h = sha512::new384();
 
     let hello = "hello".as_bytes();
     h.write(&hello).expect("failed to consume 'hello'");
@@ -23,7 +23,7 @@ fn sha384() {
 
 #[test]
 fn sha512() {
-    let mut h = SHA512::new();
+    let mut h = sha512::new();
 
     let hello = "hello".as_bytes();
     h.write(&hello).expect("failed to consume 'hello'");
@@ -40,7 +40,7 @@ fn sha512() {
 
 #[test]
 fn sha512_224() {
-    let mut h = SHA512_224::new();
+    let mut h = sha512::new512_224();
 
     let hello = "hello".as_bytes();
     h.write(&hello).expect("failed to consume 'hello'");
@@ -57,7 +57,7 @@ fn sha512_224() {
 
 #[test]
 fn sha512_256() {
-    let mut h = SHA512_256::new();
+    let mut h = sha512::new512_256();
 
     let hello = "hello".as_bytes();
     h.write(&hello).expect("failed to consume 'hello'");

@@ -23,11 +23,6 @@ impl<H> Hash for HMAC<H>
 where
     H: Hash,
 {
-    fn new() -> Self {
-        let key = Vec::new();
-        new(key.as_slice())
-    }
-
     fn size() -> usize {
         H::size()
     }
@@ -67,12 +62,13 @@ where
 
 /// new returns a new HMAC hash using the given Hash type as generic parameter H and
 /// key.
-pub fn new<H>(key: &[u8]) -> HMAC<H>
+pub fn new<H, F>(new_hash: F, key: &[u8]) -> HMAC<H>
 where
     H: Hash,
+    F: Fn() -> H,
 {
-    let mut outer = H::new();
-    let mut inner = H::new();
+    let mut outer = new_hash();
+    let mut inner = new_hash();
 
     let key = if key.len() > H::block_size() {
         let _ = outer.write(key);
@@ -106,11 +102,12 @@ where
 
 /// sum calculates the HMAC for given data based on given key, where the hash function to use is
 /// specified by means of generic parameter H
-pub fn sum<H>(key: &[u8], data: &[u8]) -> Vec<u8>
+pub fn sum<H, F>(new_hash: F, key: &[u8], data: &[u8]) -> Vec<u8>
 where
     H: Hash,
+    F: Fn() -> H,
 {
-    let mut h = new::<H>(key);
+    let mut h = new(new_hash, key);
 
     let _ = h.write(data);
     h.sum()

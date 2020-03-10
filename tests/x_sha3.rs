@@ -1,9 +1,7 @@
 //#[cfg(test)]
 #[cfg(all(test, feature = "sha3"))]
 mod test {
-    use cryptographer::x::sha3::{
-        self, Hash, Keccak256, Keccak512, SHA3_224, SHA3_256, SHA3_384, SHA3_512,
-    };
+    use cryptographer::x::sha3::{self, Hash};
     use encoding::hex;
     use serde_json::{self, Value};
     use std::fs;
@@ -51,7 +49,7 @@ mod test {
 
     #[test]
     fn new_legacy_keccak256() {
-        let mut h = Keccak256::new();
+        let mut h = sha3::new_legacy_keccak256();
 
         let hello = b"abc";
         h.write(hello).expect("failed to consume 'hello'");
@@ -65,7 +63,7 @@ mod test {
 
     #[test]
     fn new_legacy_keccak512() {
-        let mut h = Keccak512::new();
+        let mut h = sha3::new_legacy_keccak512();
 
         let hello = b"abc";
         h.write(hello).expect("failed to consume 'hello'");
@@ -79,7 +77,7 @@ mod test {
 
     #[test]
     fn sha224() {
-        let mut h = SHA3_224::new();
+        let mut h = sha3::new224();
 
         let hello = "hello".as_bytes();
         h.write(&hello).expect("failed to consume 'hello'");
@@ -96,7 +94,7 @@ mod test {
 
     #[test]
     fn sha256() {
-        let mut h = SHA3_256::new();
+        let mut h = sha3::new256();
 
         let hello = "hello".as_bytes();
         h.write(&hello).expect("failed to consume 'hello'");
@@ -113,7 +111,7 @@ mod test {
 
     #[test]
     fn sha384() {
-        let mut h = SHA3_384::new();
+        let mut h = sha3::new384();
 
         let hello = b"hello";
         h.write(hello).expect("failed to consume 'hello'");
@@ -130,7 +128,7 @@ mod test {
 
     #[test]
     fn sha512() {
-        let mut h = SHA3_512::new();
+        let mut h = sha3::new512();
 
         let hello = b"hello";
         h.write(hello).expect("failed to consume 'hello'");

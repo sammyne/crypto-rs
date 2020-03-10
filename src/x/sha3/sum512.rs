@@ -9,10 +9,6 @@ pub const BLOCK_SIZE512: usize = 72;
 pub const SIZE512: usize = 64;
 
 impl super::Hash for SHA3_512 {
-    fn new() -> Self {
-        Digest::new()
-    }
-
     fn size() -> usize {
         Sha3_512::output_size()
     }
@@ -37,7 +33,7 @@ impl super::Hash for SHA3_512 {
 /// new512 creates a new SHA3-512 hash. Its generic security strength is 512 bits against preimage
 /// attacks, and 256 bits against collision attacks.
 pub fn new512() -> SHA3_512 {
-    super::Hash::new()
+    Digest::new()
 }
 
 /// sum512 returns the SHA3-512 digest of the data.

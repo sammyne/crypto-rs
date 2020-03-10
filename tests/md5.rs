@@ -1,11 +1,11 @@
 use std::io::Write;
 
-use cryptographer::md5::{self, Hash, MD5};
+use cryptographer::md5::{self, Hash};
 use encoding::hex;
 
 #[test]
 fn md5() {
-    let mut h = MD5::new();
+    let mut h = md5::new();
 
     let hello = "hello".as_bytes();
     h.write(&hello).expect("failed to consume 'hello'");

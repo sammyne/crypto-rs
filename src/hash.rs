@@ -11,7 +11,7 @@ pub trait Hash: Write {
     /// are a multiple of the block size.
     fn block_size() -> usize;
     /// new creates a fresh hasher instance
-    fn new() -> Self;
+    //fn new() -> Self;
     /// size returns the number of bytes Sum will return
     fn size() -> usize;
 

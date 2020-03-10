@@ -11,10 +11,6 @@ pub const BLOCK_SIZE224: usize = 144;
 pub const SIZE224: usize = 28;
 
 impl Hash for SHA3_224 {
-    fn new() -> Self {
-        Digest::new()
-    }
-
     fn size() -> usize {
         Sha3_224::output_size()
     }
@@ -39,7 +35,7 @@ impl Hash for SHA3_224 {
 /// new224 creates a new SHA3-224 hash. Its generic security strength is 224 bits against preimage
 /// attacks, and 112 bits against collision attacks.
 pub fn new224() -> SHA3_224 {
-    Hash::new()
+    SHA3_224::new()
 }
 
 /// sum224 returns the SHA3-224 digest of the data.

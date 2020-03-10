@@ -11,10 +11,6 @@ pub const BLOCK_SIZE384: usize = 104;
 pub const SIZE384: usize = 48;
 
 impl Hash for SHA3_384 {
-    fn new() -> Self {
-        Digest::new()
-    }
-
     fn size() -> usize {
         Sha3_384::output_size()
     }
@@ -39,7 +35,7 @@ impl Hash for SHA3_384 {
 /// new384 creates a new SHA3-384 hash. Its generic security strength is 384 bits against preimage
 /// attacks, and 192 bits against collision attacks.
 pub fn new384() -> SHA3_384 {
-    Hash::new()
+    Digest::new()
 }
 
 /// sum384 returns the SHA3-384 digest of the data.

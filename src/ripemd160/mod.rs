@@ -10,10 +10,6 @@ pub const BLOCK_SIZE: usize = 64;
 pub const SIZE: usize = 20;
 
 impl Hash for RIPEMD160 {
-    fn new() -> Self {
-        Self(Ripemd160::new())
-    }
-
     fn size() -> usize {
         Ripemd160::output_size()
     }
@@ -45,6 +41,10 @@ impl Write for RIPEMD160 {
 
         Ok(buf.len())
     }
+}
+
+pub fn new() -> RIPEMD160 {
+    RIPEMD160(Ripemd160::new())
 }
 
 pub fn sum(b: &[u8]) -> [u8; SIZE] {

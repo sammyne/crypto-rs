@@ -15,10 +15,6 @@ pub const BLOCK_SIZE: usize = 64;
 pub const SIZE: usize = 20;
 
 impl crate::Hash for SHA1 {
-    fn new() -> Self {
-        Digest::new()
-    }
-
     fn size() -> usize {
         Sha1::output_size()
     }
@@ -38,7 +34,7 @@ impl crate::Hash for SHA1 {
 
 /// new returns a new hash.Hash computing the SHA-1 checksum.
 pub fn new() -> SHA1 {
-    crate::Hash::new()
+    SHA1::new()
 }
 
 /// sum returns the SHA-1 checksum of the data.

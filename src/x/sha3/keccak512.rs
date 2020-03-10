@@ -6,10 +6,6 @@ use super::{Hash, BLOCK_SIZE512, SIZE512};
 pub use vendored_sha3::Keccak512;
 
 impl Hash for Keccak512 {
-    fn new() -> Self {
-        Digest::new()
-    }
-
     fn size() -> usize {
         Keccak512::output_size()
     }
@@ -36,7 +32,7 @@ impl Hash for Keccak512 {
 /// Only use this function if you require compatibility with an existing cryptosystem that uses
 /// non-standard padding. All other users should use new512 instead.
 pub fn new_legacy_keccak512() -> Keccak512 {
-    Hash::new()
+    Digest::new()
 }
 
 /// keccak512 returns the Keccak-512 digest of the data.

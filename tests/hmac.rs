@@ -1,12 +1,13 @@
 use cryptographer::hmac::{self, Hash};
-use cryptographer::sha256::SHA256;
+use cryptographer::sha256;
 use encoding::hex;
 use std::io::Write;
 
 #[test]
 fn hmac_sha256() {
     let key = "hello".as_bytes();
-    let mut h = hmac::new::<SHA256>(&key);
+    //let mut h = hmac::new::<SHA256>(&key);
+    let mut h = hmac::new(sha256::new, &key);
 
     let world = "world".as_bytes();
     h.write(&world).expect("failed to consume 'world'");
@@ -34,7 +35,7 @@ fn sum_sha256() {
     for v in test_cases.iter() {
         let (key, data, expect) = v;
 
-        let digest = hmac::sum::<SHA256>(key, data);
+        let digest = hmac::sum(sha256::new, key, data);
         let got = hex::encode_to_string(&digest[..]);
 
         assert_eq!(*expect, &got);

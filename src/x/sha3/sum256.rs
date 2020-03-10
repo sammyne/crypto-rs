@@ -9,10 +9,6 @@ pub const BLOCK_SIZE256: usize = 136;
 pub const SIZE256: usize = 32;
 
 impl crate::Hash for SHA3_256 {
-    fn new() -> Self {
-        Digest::new()
-    }
-
     fn size() -> usize {
         Sha3_256::output_size()
     }
@@ -37,7 +33,7 @@ impl crate::Hash for SHA3_256 {
 /// new256 creates a new SHA3-256 hash. Its generic security strength is 256 bits against preimage
 /// attacks, and 128 bits against collision attacks.
 pub fn new256() -> SHA3_256 {
-    crate::Hash::new()
+    SHA3_256::new()
 }
 
 /// sum256 returns the SHA3-256 digest of the data.

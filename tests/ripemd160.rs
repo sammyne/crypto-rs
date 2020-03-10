@@ -1,11 +1,11 @@
 use std::io::Write;
 
-use cryptographer::ripemd160::{self, Hash, RIPEMD160};
+use cryptographer::ripemd160::{self, Hash};
 use encoding::hex;
 
 #[test]
 fn ripemd160() {
-    let mut h = RIPEMD160::new();
+    let mut h = ripemd160::new();
 
     let hello = "hello".as_bytes();
     h.write(&hello).expect("failed to consume 'hello'");

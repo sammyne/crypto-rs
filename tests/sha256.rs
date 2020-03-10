@@ -1,10 +1,10 @@
-use cryptographer::sha256::{self, Hash, SHA224, SHA256};
+use cryptographer::sha256::{self, Hash};
 use encoding::hex;
 use std::io::Write;
 
 #[test]
 fn sha224() {
-    let mut h = SHA224::new();
+    let mut h = sha256::new224();
 
     let hello = "hello".as_bytes();
     h.write(&hello).expect("failed to consume 'hello'");
@@ -21,7 +21,7 @@ fn sha224() {
 
 #[test]
 fn sha256() {
-    let mut h = SHA256::new();
+    let mut h = sha256::new();
 
     let hello = "hello".as_bytes();
     h.write(&hello).expect("failed to consume 'hello'");

@@ -18,10 +18,6 @@ pub type SHA512_224 = Engine<Sha512Trunc224>;
 pub type SHA512_256 = Engine<Sha512Trunc256>;
 
 impl<T: Clone + Digest> Hash for Engine<T> {
-    fn new() -> Self {
-        Self(T::new())
-    }
-
     fn size() -> usize {
         T::output_size()
     }
@@ -53,6 +49,22 @@ impl<T: Clone + Digest> Write for Engine<T> {
 
         Ok(buf.len())
     }
+}
+
+pub fn new() -> SHA512 {
+    Engine(Digest::new())
+}
+
+pub fn new384() -> SHA384 {
+    Engine(Digest::new())
+}
+
+pub fn new512_224() -> SHA512_224 {
+    Engine(Digest::new())
+}
+
+pub fn new512_256() -> SHA512_256 {
+    Engine(Digest::new())
 }
 
 pub fn sum384(b: &[u8]) -> [u8; SIZE384] {
