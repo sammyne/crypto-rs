@@ -1,6 +1,6 @@
 use std::io::{self, Write};
 
-use ripemd160::{Digest, Ripemd160};
+use vendored_ripemd160::{Digest, Ripemd160};
 
 pub use super::Hash;
 

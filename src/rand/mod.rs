@@ -1,6 +1,6 @@
 use std::io;
 
-use rand::{rngs::OsRng, RngCore};
+use vendored_rand::{rngs::OsRng, RngCore};
 
 pub struct Rand(OsRng);
 

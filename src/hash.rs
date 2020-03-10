@@ -10,13 +10,13 @@ pub trait Hash: Write {
     /// of data, but it may operate more efficiently if all writes
     /// are a multiple of the block size.
     fn block_size() -> usize;
-    /// new creates a fresh hasher instance
-    //fn new() -> Self;
-    /// size returns the number of bytes Sum will return
-    fn size() -> usize;
 
     /// reset resets the Hash to its initial state
     fn reset(&mut self);
+
+    /// size returns the number of bytes Sum will return
+    fn size() -> usize;
+
     /// sum returns the resulting slice. It does not change the underlying hash state.
     fn sum(&mut self) -> Vec<u8>;
 }

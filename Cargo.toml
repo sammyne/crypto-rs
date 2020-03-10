@@ -14,13 +14,27 @@ repository = "https://github.com/sammyne/cryptographer"
 
 [features]
 default = []
+aes = ["cipher", "vendored-aes"]
+cipher = []
+curve25519 = ["elliptic", "x25519-dalek"]
+ed25519 = ["x25519-dalek"]
+elliptic = []
+hmac = []
+internal = []
+md5 = ["md-5"]
+rand = ["vendored-rand"]
+rc4 = ["internal"]
+ripemd160 = ["vendored-ripemd160"]
+secp256k1 = ["libsecp256k1", "rand"]
 sha1 = ["sha-1"]
+sha256 = ["sha2"]
+sha512 = ["sha2"]
 sha3 = ["vendored-sha3"]
+subtle = ["vendored-rand"]
 
 [dependencies]
-aes = "0.3.2"
-rand = "0.7.2"
-x25519-dalek = "0.6.0"
+vendored-rand = { optional = true, package = "rand", version = "0.7.2" }
+x25519-dalek = { optional = true, version = "0.6.0" }
 
 [dependencies.digest]
 tag = "digest-v0.8.1"
@@ -30,16 +44,20 @@ git = "https://github.com/RustCrypto/traits.git"
 version = "1.0.0-pre.2"
 
 [dependencies.libsecp256k1]
-rev = "0628d1ed8979e08e265169bf32754f860d762ee8"
 git = "https://github.com/paritytech/libsecp256k1.git"
+optional = true
+rev = "0628d1ed8979e08e265169bf32754f860d762ee8"
 
 [dependencies.md-5]
+git = "https://github.com/RustCrypto/hashes.git"
+optional = true
 tag = "md5-v0.8.0"
-git = "https://github.com/RustCrypto/hashes.git"
 
-[dependencies.ripemd160]
-tag = "ripemd160-v0.8.0"
+[dependencies.vendored-ripemd160]
 git = "https://github.com/RustCrypto/hashes.git"
+optional = true
+package = "ripemd160"
+tag = "ripemd160-v0.8.0"
 
 [dependencies.sha-1]
 tag = "sha1-v0.8.2"
@@ -47,8 +65,14 @@ git = "https://github.com/RustCrypto/hashes.git"
 optional = true
 
 [dependencies.sha2]
-tag = "sha2-v0.8.0"
 git = "https://github.com/RustCrypto/hashes.git"
+optional = true
+tag = "sha2-v0.8.0"
+
+[dependencies.vendored-aes]
+optional = true
+package = "aes"
+version = "0.3.2"
 
 [dependencies.vendored-sha3]
 # the official sha3 missing Clone for Sha3XofReader
@@ -61,9 +85,7 @@ package = "sha3"
 
 [dev-dependencies]
 cfg-if = "0.1.10"
-#serde = "1.0.104"
 serde_json = "1.0.48"
-
 
 [dev-dependencies.encoding]
 rev = "f28b0c5ff27ad0a0973359a410673280f1ef5d85"

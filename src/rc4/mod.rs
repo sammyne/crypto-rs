@@ -2,7 +2,7 @@
 //!
 //! RC4 is cryptographically broken and should not be used for secure applications.
 
-use super::internal::subtle;
+use crate::internal::subtle;
 
 /// Cipher is an instance of RC4 using a particular key.
 pub struct Cipher {

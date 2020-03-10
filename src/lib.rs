@@ -1,27 +1,37 @@
 use std::io::Read;
 
+#[cfg(feature = "internal")]
 mod internal;
 
 mod hash;
 
+#[cfg(feature = "aes")]
 pub mod aes;
+#[cfg(feature = "cipher")]
 pub mod cipher;
+#[cfg(feature = "ed25519")]
 pub mod ed25519;
+#[cfg(feature = "elliptic")]
 pub mod elliptic;
-
-//#[cfg(feature = "hmac")]
+#[cfg(feature = "hmac")]
 pub mod hmac;
+#[cfg(feature = "md5")]
 pub mod md5;
+#[cfg(feature = "rand")]
 pub mod rand;
+#[cfg(feature = "rc4")]
 pub mod rc4;
+#[cfg(feature = "ripemd160")]
 pub mod ripemd160;
+#[cfg(feature = "secp256k1")]
 pub mod secp256k1;
-
 #[cfg(feature = "sha1")]
 pub mod sha1;
-
+#[cfg(feature = "sha256")]
 pub mod sha256;
+#[cfg(feature = "sha512")]
 pub mod sha512;
+#[cfg(feature = "subtle")]
 pub mod subtle;
 pub mod x;
 
