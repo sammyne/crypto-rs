@@ -14,6 +14,7 @@ repository = "https://github.com/sammyne/cryptographer"
 
 [features]
 default = []
+sha1 = ["sha-1"]
 sha3 = ["vendored-sha3"]
 
 [dependencies]
@@ -40,6 +41,11 @@ git = "https://github.com/RustCrypto/hashes.git"
 tag = "ripemd160-v0.8.0"
 git = "https://github.com/RustCrypto/hashes.git"
 
+[dependencies.sha-1]
+tag = "sha1-v0.8.2"
+git = "https://github.com/RustCrypto/hashes.git"
+optional = true
+
 [dependencies.sha2]
 tag = "sha2-v0.8.0"
 git = "https://github.com/RustCrypto/hashes.git"
@@ -54,8 +60,10 @@ optional = true
 package = "sha3"
 
 [dev-dependencies]
+cfg-if = "0.1.10"
 #serde = "1.0.104"
 serde_json = "1.0.48"
+
 
 [dev-dependencies.encoding]
 rev = "f28b0c5ff27ad0a0973359a410673280f1ef5d85"

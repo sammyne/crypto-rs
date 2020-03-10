@@ -14,6 +14,10 @@ pub mod rand;
 pub mod rc4;
 pub mod ripemd160;
 pub mod secp256k1;
+
+#[cfg(feature = "sha1")]
+pub mod sha1;
+
 pub mod sha256;
 pub mod sha512;
 pub mod subtle;
