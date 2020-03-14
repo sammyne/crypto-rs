@@ -1,0 +1,85 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="API documentation for the Rust `sha3` mod in crate `cryptographer`."><meta name="keywords" content="rust, rustlang, rust-lang, sha3"><title>cryptographer::x::sha3 - Rust</title><link rel="stylesheet" type="text/css" href="../../../normalize.css"><link rel="stylesheet" type="text/css" href="../../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../../dark.css"><link rel="stylesheet" type="text/css" href="../../../light.css" id="themeStyle"><script src="../../../storage.js"></script><noscript><link rel="stylesheet" href="../../../noscript.css"></noscript><link rel="shortcut icon" href="../../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../../down-arrow.svg");}</style></head><body class="rustdoc mod"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../../cryptographer/index.html'><div class='logo-container'><img src='../../../rust-logo.png' alt='logo'></div></a><p class='location'>Module sha3</p><div class="sidebar-elems"><div class="block items"><ul><li><a href="#structs">Structs</a></li><li><a href="#constants">Constants</a></li><li><a href="#traits">Traits</a></li><li><a href="#functions">Functions</a></li><li><a href="#types">Type Definitions</a></li></ul></div><p class='location'><a href='../../index.html'>cryptographer</a>::<wbr><a href='../index.html'>x</a></p><script>window.sidebarCurrent = {name: 'sha3', ty: 'mod', relpath: '../'};</script><script defer src="../sidebar-items.js"></script></div></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../../theme.js"></script><nav class="sub"><form class="search-form js-only"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><a id="settings-menu" href="../../../settings.html"><img src="../../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><h1 class='fqn'><span class='out-of-band'><span id='render-detail'><a id="toggle-all-docs" href="javascript:void(0)" title="collapse all docs">[<span class='inner'>&#x2212;</span>]</a></span><a class='srclink' href='../../../src/cryptographer/x/sha3/mod.rs.html#1-90' title='goto source code'>[src]</a></span><span class='in-band'>Module <a href='../../index.html'>cryptographer</a>::<wbr><a href='../index.html'>x</a>::<wbr><a class="mod" href=''>sha3</a></span></h1><div class='docblock'><p>module sha3 implements the SHA-3 fixed-output-length hash functions and the SHAKE
+variable-output-length hash functions defined by FIPS-202.</p>
+<p>Both types of hash function use the &quot;sponge&quot; construction and the Keccak permutation. For a
+detailed specification see <a href="http://keccak.noekeon.org/">http://keccak.noekeon.org/</a>.</p>
+<h1 id="guidance" class="section-header"><a href="#guidance">Guidance</a></h1>
+<p>If you aren't sure what function you need, use SHAKE256 with at least 64 bytes of output. The
+SHAKE instances are faster than the SHA3 instances; the latter have to allocate memory to
+conform to the hash.Hash interface.</p>
+<p>If you need a secret-key MAC (message authentication code), prepend the secret key to the
+input, hash with SHAKE256 and read at least 32 bytes of output.</p>
+<h1 id="security-strengths" class="section-header"><a href="#security-strengths">Security strengths</a></h1>
+<p>The SHA3-x (x equals 224, 256, 384, or 512) functions have a security strength against preimage
+attacks of x bits. Since they only produce &quot;x&quot; bits of output, their collision-resistance is
+only &quot;x/2&quot; bits.</p>
+<p>The SHAKE-256 and -128 functions have a generic security strength of 256 and 128 bits against
+all attacks, provided that at least 2x bits of their output is used. Requesting more than 64 or
+32 bytes of output, respectively, does not increase the collision-resistance of the SHAKE
+functions.</p>
+<h1 id="the-sponge-construction" class="section-header"><a href="#the-sponge-construction">The sponge construction</a></h1>
+<p>A sponge builds a pseudo-random function from a public pseudo-random permutation, by applying
+the permutation to a state of &quot;rate + capacity&quot; bytes, but hiding &quot;capacity&quot; of the bytes.</p>
+<p>A sponge starts out with a zero state. To hash an input using a sponge, up to &quot;rate&quot; bytes of
+the input are XORed into the sponge's state. The sponge is then &quot;full&quot; and the permutation is
+applied to &quot;empty&quot; it. This process is repeated until all the input has been &quot;absorbed&quot;. The
+input is then padded. The digest is &quot;squeezed&quot; from the sponge in the same way, except that
+output is copied out instead of input being XORed in.</p>
+<p>A sponge is parameterized by its generic security strength, which is equal to half its
+capacity; capacity + rate is equal to the permutation's width. Since the KeccakF-1600
+permutation is 1600 bits (200 bytes) wide, this means that the security strength of a sponge
+instance is equal to (1600 - bitrate) / 2.</p>
+<h1 id="recommendations" class="section-header"><a href="#recommendations">Recommendations</a></h1>
+<p>The SHAKE functions are recommended for most new uses. They can produce output of arbitrary
+length. SHAKE256, with an output length of at least 64 bytes, provides 256-bit security against
+all attacks. The Keccak team recommends it for most applications upgrading from SHA2-512. (NIST
+chose a much stronger, but much slower, sponge instance for SHA3-512.)</p>
+<p>The SHA-3 functions are &quot;drop-in&quot; replacements for the SHA-2 functions. They produce output of
+the same length, with the same security strengths against all attacks. This means, in
+particular, that SHA3-256 only has 128-bit collision resistance, because its output length is
+32 bytes.</p>
+</div><h2 id='structs' class='section-header'><a href="#structs">Structs</a></h2>
+<table><tr class='module-item'><td><a class="struct" href="struct.Keccak256.html" title='cryptographer::x::sha3::Keccak256 struct'>Keccak256</a></td><td class='docblock-short'><p>Keccak256 is re-exported and implements Hash.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.Keccak512.html" title='cryptographer::x::sha3::Keccak512 struct'>Keccak512</a></td><td class='docblock-short'><p>Keccak512 is re-exported and implements Hash.</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.SHAKE128.html" title='cryptographer::x::sha3::SHAKE128 struct'>SHAKE128</a></td><td class='docblock-short'><p>SHAKE128 is the 128-bit SHAKE variable-output-length hash functions defined by FIPS-202</p>
+</td></tr><tr class='module-item'><td><a class="struct" href="struct.SHAKE256.html" title='cryptographer::x::sha3::SHAKE256 struct'>SHAKE256</a></td><td class='docblock-short'><p>SHAKE256 is the 256-bit SHAKE variable-output-length hash functions defined by FIPS-202</p>
+</td></tr></table><h2 id='constants' class='section-header'><a href="#constants">Constants</a></h2>
+<table><tr class='module-item'><td><a class="constant" href="constant.BLOCK_SIZE224.html" title='cryptographer::x::sha3::BLOCK_SIZE224 constant'>BLOCK_SIZE224</a></td><td class='docblock-short'><p>The blocksize of SHA3-224 in bytes.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.BLOCK_SIZE256.html" title='cryptographer::x::sha3::BLOCK_SIZE256 constant'>BLOCK_SIZE256</a></td><td class='docblock-short'><p>The blocksize of SHA3-256 and Keccak-256 in bytes.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.BLOCK_SIZE384.html" title='cryptographer::x::sha3::BLOCK_SIZE384 constant'>BLOCK_SIZE384</a></td><td class='docblock-short'><p>The blocksize of SHA3-384 in bytes.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.BLOCK_SIZE512.html" title='cryptographer::x::sha3::BLOCK_SIZE512 constant'>BLOCK_SIZE512</a></td><td class='docblock-short'><p>The blocksize of SHA3-512 and Keccak-512 in bytes.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.SIZE224.html" title='cryptographer::x::sha3::SIZE224 constant'>SIZE224</a></td><td class='docblock-short'><p>The size of a SHA3-224 checksum in bytes.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.SIZE256.html" title='cryptographer::x::sha3::SIZE256 constant'>SIZE256</a></td><td class='docblock-short'><p>The size of a SHA3-256 and Keccak-256 checksum in bytes.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.SIZE384.html" title='cryptographer::x::sha3::SIZE384 constant'>SIZE384</a></td><td class='docblock-short'><p>The size of a SHA3-384 checksum in bytes.</p>
+</td></tr><tr class='module-item'><td><a class="constant" href="constant.SIZE512.html" title='cryptographer::x::sha3::SIZE512 constant'>SIZE512</a></td><td class='docblock-short'><p>The size of a SHA3-512 and Keccak-512 checksum in bytes.</p>
+</td></tr></table><h2 id='traits' class='section-header'><a href="#traits">Traits</a></h2>
+<table><tr class='module-item'><td><a class="trait" href="trait.Hash.html" title='cryptographer::x::sha3::Hash trait'>Hash</a></td><td class='docblock-short'><p>The <code>Hash</code> trait specifies the common interface for hash functions.</p>
+</td></tr><tr class='module-item'><td><a class="trait" href="trait.ShakeHash.html" title='cryptographer::x::sha3::ShakeHash trait'>ShakeHash</a></td><td class='docblock-short'><p>ShakeHash specifies the trait for SHAKE-variant hash.</p>
+</td></tr></table><h2 id='functions' class='section-header'><a href="#functions">Functions</a></h2>
+<table><tr class='module-item'><td><a class="fn" href="fn.keccak256.html" title='cryptographer::x::sha3::keccak256 fn'>keccak256</a></td><td class='docblock-short'><p>keccak256 returns the Keccak-256 digest of the data.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.keccak512.html" title='cryptographer::x::sha3::keccak512 fn'>keccak512</a></td><td class='docblock-short'><p>keccak512 returns the Keccak-512 digest of the data.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.new224.html" title='cryptographer::x::sha3::new224 fn'>new224</a></td><td class='docblock-short'><p>new224 creates a new SHA3-224 hash. Its generic security strength is 224 bits against preimage
+attacks, and 112 bits against collision attacks.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.new256.html" title='cryptographer::x::sha3::new256 fn'>new256</a></td><td class='docblock-short'><p>new256 creates a new SHA3-256 hash. Its generic security strength is 256 bits against preimage
+attacks, and 128 bits against collision attacks.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.new384.html" title='cryptographer::x::sha3::new384 fn'>new384</a></td><td class='docblock-short'><p>new384 creates a new SHA3-384 hash. Its generic security strength is 384 bits against preimage
+attacks, and 192 bits against collision attacks.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.new512.html" title='cryptographer::x::sha3::new512 fn'>new512</a></td><td class='docblock-short'><p>new512 creates a new SHA3-512 hash. Its generic security strength is 512 bits against preimage
+attacks, and 256 bits against collision attacks.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.new_legacy_keccak256.html" title='cryptographer::x::sha3::new_legacy_keccak256 fn'>new_legacy_keccak256</a></td><td class='docblock-short'><p>new_legacy_keccak256 creates a new Keccak-256 hash.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.new_legacy_keccak512.html" title='cryptographer::x::sha3::new_legacy_keccak512 fn'>new_legacy_keccak512</a></td><td class='docblock-short'><p>new_legacy_keccak512 creates a new Keccak-512 hash.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.new_shake128.html" title='cryptographer::x::sha3::new_shake128 fn'>new_shake128</a></td><td class='docblock-short'><p>new_shake128 creates a new SHAKE128 variable-output-length ShakeHash. Its generic security
+strength is 128 bits against all attacks if at least 32 bytes of its output are used.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.new_shake256.html" title='cryptographer::x::sha3::new_shake256 fn'>new_shake256</a></td><td class='docblock-short'><p>new_shake256 creates a new SHAKE256 variable-output-length ShakeHash. Its generic security
+strength is 256 bits against all attacks if at least 64 bytes of its output are used.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.shake_sum128.html" title='cryptographer::x::sha3::shake_sum128 fn'>shake_sum128</a></td><td class='docblock-short'><p>shake_sum128 writes an arbitrary-length digest of data into hash.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.shake_sum256.html" title='cryptographer::x::sha3::shake_sum256 fn'>shake_sum256</a></td><td class='docblock-short'><p>shake_sum256 writes an arbitrary-length digest of data into hash.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.sum224.html" title='cryptographer::x::sha3::sum224 fn'>sum224</a></td><td class='docblock-short'><p>sum224 returns the SHA3-224 digest of the data.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.sum256.html" title='cryptographer::x::sha3::sum256 fn'>sum256</a></td><td class='docblock-short'><p>sum256 returns the SHA3-256 digest of the data.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.sum384.html" title='cryptographer::x::sha3::sum384 fn'>sum384</a></td><td class='docblock-short'><p>sum384 returns the SHA3-384 digest of the data.</p>
+</td></tr><tr class='module-item'><td><a class="fn" href="fn.sum512.html" title='cryptographer::x::sha3::sum512 fn'>sum512</a></td><td class='docblock-short'><p>sum512 returns the SHA3-512 digest of the data.</p>
+</td></tr></table><h2 id='types' class='section-header'><a href="#types">Type Definitions</a></h2>
+<table><tr class='module-item'><td><a class="type" href="type.SHA3_224.html" title='cryptographer::x::sha3::SHA3_224 type'>SHA3_224</a></td><td class='docblock-short'><p>SHA3_224 alias Sha3_224 and implements Hash.</p>
+</td></tr><tr class='module-item'><td><a class="type" href="type.SHA3_256.html" title='cryptographer::x::sha3::SHA3_256 type'>SHA3_256</a></td><td class='docblock-short'><p>SHA3_256 alias Sha3_256 and implements crate::Hash.</p>
+</td></tr><tr class='module-item'><td><a class="type" href="type.SHA3_384.html" title='cryptographer::x::sha3::SHA3_384 type'>SHA3_384</a></td><td class='docblock-short'><p>SHA3_384 alias Sha3_384 and implements Hash.</p>
+</td></tr><tr class='module-item'><td><a class="type" href="type.SHA3_512.html" title='cryptographer::x::sha3::SHA3_512 type'>SHA3_512</a></td><td class='docblock-short'><p>SHA3_512 alias Sha3_512 and implements Hash.</p>
+</td></tr></table></section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../../";window.currentCrate = "cryptographer";</script><script src="../../../aliases.js"></script><script src="../../../main.js"></script><script defer src="../../../search-index.js"></script></body></html>

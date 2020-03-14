@@ -1,0 +1,1 @@
+initSidebarItems({"constant":[["BLOCK_SIZE","The blocksize of SHA-1 in bytes."],["SIZE","The size of a SHA-1 checksum in bytes."]],"fn":[["new","new returns a new hash.Hash computing the SHA-1 checksum."],["sum","sum returns the SHA-1 checksum of the data."]],"type":[["SHA1","SHA1 alias Sha3_256 and implements crate::Hash."]]});

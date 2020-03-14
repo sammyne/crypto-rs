@@ -1,0 +1,9 @@
+(function() {var implementors = {};
+implementors["cryptographer"] = [{text:"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"cryptographer/aes/enum.Error.html\" title=\"enum cryptographer::aes::Error\">Error</a>",synthetic:false,types:["cryptographer::aes::Error"]},{text:"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"struct\" href=\"cryptographer/ed25519/struct.PublicKey.html\" title=\"struct cryptographer::ed25519::PublicKey\">PublicKey</a>",synthetic:false,types:["cryptographer::ed25519::PublicKey"]},{text:"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"cryptographer/ed25519/enum.Error.html\" title=\"enum cryptographer::ed25519::Error\">Error</a>",synthetic:false,types:["cryptographer::ed25519::Error"]},{text:"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"cryptographer/rc4/enum.Error.html\" title=\"enum cryptographer::rc4::Error\">Error</a>",synthetic:false,types:["cryptographer::rc4::Error"]},{text:"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Debug.html\" title=\"trait core::fmt::Debug\">Debug</a> for <a class=\"enum\" href=\"cryptographer/x/secp256k1/enum.Error.html\" title=\"enum cryptographer::x::secp256k1::Error\">Error</a>",synthetic:false,types:["cryptographer::x::secp256k1::Error"]},];
+
+            if (window.register_implementors) {
+                window.register_implementors(implementors);
+            } else {
+                window.pending_implementors = implementors;
+            }
+        })()

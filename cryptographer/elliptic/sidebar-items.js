@@ -1,0 +1,1 @@
+initSidebarItems({"mod":[["curve25519","module curve25519 provides an implementation of the X25519 function, which performs scalar multiplication on the elliptic curve known as Curve25519. See [RFC 7748][1]."]]});

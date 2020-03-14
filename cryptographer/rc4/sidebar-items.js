@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Error","Error enumerations related cryptographic operations in this module"]],"fn":[["new","NewCipher creates and returns a new Cipher. The key argument should be the RC4 key, at least 1 byte and at most 256 bytes. Aliased to rc4.NewCipher in go."]],"struct":[["Cipher","Cipher is an instance of RC4 using a particular key."]]});
