@@ -22,7 +22,7 @@ pub enum Error {
 //        PublicKey::from_secret_key(&self)
 //    }
 //}
-impl super::Signer for PrivateKey {
+impl crate::Signer for PrivateKey {
     type PublicKey = PublicKey;
 
     fn public(&self) -> Self::PublicKey {

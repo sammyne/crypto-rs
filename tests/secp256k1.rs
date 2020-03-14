@@ -1,7 +1,7 @@
 #[cfg(all(test, feature = "secp256k1"))]
 mod test {
     use cryptographer::rand::Rand;
-    use cryptographer::{secp256k1, Signer};
+    use cryptographer::{x::secp256k1, Signer};
 
     #[test]
     fn sign_verify() {
@@ -14,7 +14,6 @@ mod test {
         let sig = secp256k1::sign(&priv_key, &msg[..]).unwrap();
 
         let pub_key = priv_key.public();
-        //let pub_key: PublicKey = priv_key.public();
         secp256k1::verify(&pub_key, &msg[..], &sig).unwrap();
     }
 }

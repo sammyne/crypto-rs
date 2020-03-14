@@ -21,8 +21,6 @@ pub mod md5;
 pub mod rand;
 #[cfg(feature = "rc4")]
 pub mod rc4;
-#[cfg(feature = "secp256k1")]
-pub mod secp256k1;
 #[cfg(feature = "sha1")]
 pub mod sha1;
 #[cfg(feature = "sha256")]
