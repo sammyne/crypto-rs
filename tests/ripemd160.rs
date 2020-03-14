@@ -2,7 +2,7 @@
 mod test {
     use std::io::Write;
 
-    use cryptographer::ripemd160::{self, Hash};
+    use cryptographer::x::ripemd160::{self, Hash};
     use encoding::hex;
 
     #[test]
