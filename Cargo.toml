@@ -1,5 +1,5 @@
 [package]
-name = "cryptographer"
+name = "crypto"
 version = "0.6.1"
 authors = ["sammyne <lixiangmin01@baidu.com>"]
 edition = "2018"
@@ -72,7 +72,7 @@ tag = "sha2-v0.8.0"
 [dependencies.vendored-aes]
 optional = true
 package = "aes"
-version = "0.3.2"
+version = "0.7.4"
 
 [dependencies.vendored-sha3]
 # the official sha3 missing Clone for Sha3XofReader
