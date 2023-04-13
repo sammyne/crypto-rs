@@ -72,7 +72,7 @@ tag = "sha2-v0.8.0"
 [dependencies.vendored-aes]
 optional = true
 package = "aes"
-version = "0.3.2"
+version = "0.8.2"
 
 [dependencies.vendored-sha3]
 # the official sha3 missing Clone for Sha3XofReader
