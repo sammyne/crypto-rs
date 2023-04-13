@@ -5,7 +5,7 @@
 use std::convert::TryFrom;
 use std::io::{self, Read};
 
-use ed25519_dalek::{Keypair, SecretKey, Signature, SignatureError};
+use ed25519_dalek::{Keypair, SecretKey, Signature, SignatureError, Signer, Verifier};
 
 /// PUBLIC_KEY_LEN is the size, in bytes, of public keys as used in this package.
 pub const PUBLIC_KEY_LEN: usize = 32;
