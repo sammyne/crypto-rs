@@ -2,7 +2,6 @@
 //! Processing Standards Publication 197
 
 use vendored_aes::cipher::generic_array::GenericArray;
-use vendored_aes::cipher::BlockCipher;
 use vendored_aes::cipher::BlockDecrypt;
 use vendored_aes::cipher::BlockEncrypt;
 use vendored_aes::cipher::KeyInit;
