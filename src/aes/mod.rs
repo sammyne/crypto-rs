@@ -1,8 +1,11 @@
 //! module aes implements AES encryption (formerly Rijndael), as defined in U.S. Federal Information
 //! Processing Standards Publication 197
 
-use vendored_aes::block_cipher_trait::generic_array::GenericArray;
-use vendored_aes::block_cipher_trait::BlockCipher;
+use vendored_aes::cipher::generic_array::GenericArray;
+use vendored_aes::cipher::BlockCipher;
+use vendored_aes::cipher::BlockDecrypt;
+use vendored_aes::cipher::BlockEncrypt;
+use vendored_aes::cipher::KeyInit;
 use vendored_aes::{Aes128, Aes192, Aes256};
 
 pub use super::cipher::Block;
