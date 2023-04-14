@@ -1,0 +1,1 @@
+window.SIDEBAR_ITEMS = {"constant":[["PRIVATE_KEY_LEN",""],["SIGNATURE_LEN",""]],"enum":[["Error",""]],"fn":[["generate_key",""],["sign",""],["verify",""]],"type":[["PrivateKey",""],["PublicKey",""]]};
