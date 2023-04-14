@@ -1,7 +1,7 @@
 # crypto-rs
 
-[![docs badge](https://img.shields.io/badge/docs-0.6.1-blue)](https://sammyne.github.io/crypto-rs/cryptographer/)
-![minimum rustc](https://img.shields.io/badge/rustc-1.54%2B-blue)
+[![docs badge](https://img.shields.io/badge/docs-0.7.0-blue)](https://sammyne.github.io/crypto-rs/crypto/)
+![minimum rustc](https://img.shields.io/badge/rustc-1.68.2%2B-blue)
 
 This repository tries to implement a Go-like crypto library in Rust.
 
